@@ -32,11 +32,10 @@ jobs:
         run: mvn --batch-mode clean verify
 
       # 4. SonarQube analysis
-      - name: SonarQube Cloud scan
+      - name: SonarQube Cloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn --batch-mode sonar:sonar
-
+        run: mvn --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
       # 5. Docker login
       - name: Log in to Docker Hub
         if: github.event_name == 'push'
